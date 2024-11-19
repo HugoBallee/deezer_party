@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v4
       - run: touch testfile.txt
       - name: update file and push to remote
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           echo "Test push commit to the remote in the workflow" >> test.txt
 
           git config --global user.name "github-actions[bot]"
