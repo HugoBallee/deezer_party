@@ -10,6 +10,18 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
+      - run: touch testfile.txt
+      - name: update file and push to remote
+        run: |
+          echo "Test push commit to the remote in the workflow" >> test.txt
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    
+          git add -A
+          git commit -m "Update testfile.txt"
+          git push
+
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
