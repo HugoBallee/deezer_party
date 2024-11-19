@@ -13,6 +13,8 @@ jobs:
       - run: touch testfile.txt
       - name: update file and push to remote
         run: |
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           echo "Test push commit to the remote in the workflow" >> test.txt
 
           git config --global user.name "github-actions[bot]"
